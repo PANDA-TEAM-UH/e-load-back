@@ -9,8 +9,8 @@ const stationSchema = new mongoose.Schema(
         address: {type: String, required: true},
         likes: {type: Number, default: 0},
         image: {type: String},
-        schedule: {type: String, required: true}
-        
+        schedule: {type: String, required: true},
+        comments: [{type: mongoose.Types.ObjectId, ref: 'comments'}]        
     },
     {
         timestamps: true,
