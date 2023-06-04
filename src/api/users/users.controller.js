@@ -66,6 +66,9 @@ const deleteUser = async (req, res) => {
         const idUser = JSON.stringify(req.user._id);     //Revisar si solo paso req.user._id
         const idUserParsed = idUser.slice(1, idUser.length, -1);
         if(req.user.rol === "admin" || idUserParsed === id){
+            if(user.image){
+                deleteFile(user.image);
+            }
             const userDeleted = await User.findByIdAndDelete(id)
             return res.status(200).json(userDeleted);
         }
