@@ -50,7 +50,7 @@ const deleteSpot = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
-const getAllSpots = async (res) => {
+const getAllSpots = async (req, res) => {
     try {
         const spots = await Spot.find();
         return res.status(200).json(spots);

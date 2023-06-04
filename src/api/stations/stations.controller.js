@@ -79,7 +79,7 @@ const deleteStation = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
-const getAllStations = async (res) => {
+const getAllStations = async (req, res) => {
     try {
         const stations = await Station.find();
         return res.status(200).json(stations);

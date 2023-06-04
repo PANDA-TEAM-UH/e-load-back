@@ -27,7 +27,7 @@ const deleteComment = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
-const getAllComments = async (res) => {
+const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.find();
         return res.status(200).json(comments);
