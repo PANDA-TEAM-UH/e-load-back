@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
         password: {type: String, required: true, trim: true},
         rol: {type: String, default: "user", enum: ["admin", "user"]},
         status: {type: String, required: true, default: 'unverified'},
-        spots: { type: mongoose.Types.ObjectId, ref: 'spots'}
+        spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}]
     },
     {
         timestamps: true,

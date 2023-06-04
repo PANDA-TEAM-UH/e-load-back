@@ -83,11 +83,13 @@ const deleteUser = async (req, res) => {
 const login = async (req, res) => {
     try{
         const userToLog = await User.findOne({username: req.body.username});
+        console.log(bcrypt.compareSync(req.body.password, userToLog.password));
         if(!userToLog){
             return res.status(404).json({msg: 'Not Found'});
         }
         if(bcrypt.compareSync(req.body.password, userToLog.password)){
             const token = generateSign(userToLog.id, userToLog.username);
+            console.log("Entra aquí");
             return res.status(200).json({token, userToLog});
         }
         else{
