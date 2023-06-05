@@ -53,33 +53,27 @@ const updateUser = async (req, res) => {
     }
 }
 const deleteUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const user = await User.findById(id);
-        if(!user){
-            return res.status(404).json({msg: 'Not Found'});
-        }
-        const userToDelete = new User(req.body);
-        if(req.user.rol !== "admin"){
-            userToDelete.rol = "user";
-        }
-        const idUser = JSON.stringify(req.user._id);     //Revisar si solo paso req.user._id
-        const idUserParsed = idUser.slice(1, idUser.length, -1);
-        if(req.user.rol === "admin" || idUserParsed === id){
-            if(user.image){
-                deleteFile(user.image);
-            }
-            const userDeleted = await User.findByIdAndDelete(id)
-            return res.status(200).json(userDeleted);
-        }
-        else{
-            return res.status(403).json({msg: 'Forbbiden'});
-        }
-    } catch (error) {
-        //pasar error a grafana
-        return res.status(500).json({msg: 'Internal Server Error'});
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ msg: "Not Found" });
     }
+    const userToDelete = new User(req.body);
+    if (req.user.rol !== "admin") {
+      userToDelete.rol = "user";
+    }
+    if (user.image) {
+      deleteFile(user.image);
+    }
+    const userDeleted = await User.findByIdAndDelete(id);
+    return res.status(200).json(userDeleted);
+  } catch (error) {
+    //pasar error a grafana
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
 }
+//CREAR MÉTODO PARA QUE UN USUARIO PUEDA BORRARSE SU CUENTA.
 const login = async (req, res) => {
     try{
         const { username, password } = req.body;
