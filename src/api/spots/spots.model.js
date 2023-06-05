@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const spotSchema = new mongoose.Schema(
     {
-        power: {type: String, required: true, enum: ["2.3kW", "3.7kW", "7.4kW", "11kW", "22kW", "43kW", "50kW"]},
+        power: {type: String, required: true, enum: ["2.3 kW", "3.7 kW", "7.4 kW", "11 kW", "22 kW", "43 kW", "50 kW"]},
         type: {type: String, required: true, enum: ["CHAdeMO", "CCS2", "Type2", "Schuko"]},
         rate: {type: Number, required: true},
         state: {type: String, required: true, enum: ["Libre", "Ocupado", "Fuera de Servicio"], default:'Libre'}
