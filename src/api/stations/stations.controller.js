@@ -67,13 +67,16 @@ const deleteStation = async (req, res) => {
 };
 const getAllStations = async (req, res) => {
     try {
-        const stations = await Station.find();
+        const stations = await Station.find().select('coordinates');
         return res.status(200).json(stations);
     } catch (error) {
         //pasar el error a grafana
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
+
+//CREAR MÉTODO PARA CARGA PARCIAL SIN COMENTARIOS Y OTRO SOLO DE LOS COMENTARIOS
+
 const getStationById = async (req, res) => {
     try {
         const { id } = req.params;
