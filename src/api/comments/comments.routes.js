@@ -7,6 +7,6 @@ commentsRoutes.post("/", [isAuth], createComment);
 commentsRoutes.delete("/:id", [isAdmin], deleteComment);
 commentsRoutes.get("/", getAllComments);
 commentsRoutes.get("/:id", getCommentById);
-spotsRoutes.get("/station/:id", getAllCommentsByStation);
+commentsRoutes.get("/station/:id", getAllCommentsByStation);
 
 module.exports = commentsRoutes;
