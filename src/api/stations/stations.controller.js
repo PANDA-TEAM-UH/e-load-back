@@ -74,25 +74,10 @@ const getAllStations = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
-
-//CREAR MÉTODO PARA CARGA PARCIAL SIN COMENTARIOS Y OTRO SOLO DE LOS COMENTARIOS
-const getStationsComments = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const comments = await Station.findById(id).select('comments');
-    if(!comments){
-      return res.status(404).json({msg: 'Not Found'});
-    }
-    return res.status(200).json(comments);
-  } catch (error) {
-    return res.status(500).json({msg: 'Internal Server Error'});
-  }
-}
-
 const getStationById = async (req, res) => {
     try {
         const { id } = req.params;
-        const station = await Station.findById(id).select('-comments');
+        const station = await Station.findById(id);
         if(!station){
             return res.status(404).json({msg: 'Not Found'});
         }
@@ -108,6 +93,5 @@ module.exports = {
     updateStation,
     deleteStation,
     getAllStations,
-    getStationById,
-    getStationsComments
+    getStationById
 }
