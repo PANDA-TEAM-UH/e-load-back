@@ -36,6 +36,19 @@ const getAllComments = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
+const getAllCommentsByStation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const comments = await Comment.find({ station: id}).populate('user', 'username');
+        if(!comments){
+            return res.status(404).json({msg: 'Not Found'});
+        }
+        return res.status(200).json(comments);
+    } catch (error) {
+        //pasar el error a grafana
+        return res.status(500).json({msg: 'Internal Server Error'});
+    }
+}
 const getCommentById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -54,5 +67,6 @@ module.exports = {
     createComment,
     deleteComment,
     getAllComments,
+    getAllCommentsByStation,
     getCommentById
 }
