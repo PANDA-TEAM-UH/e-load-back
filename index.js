@@ -20,11 +20,13 @@ const db = require("./src/utils/db.js");
 db.connectDB();
 
 const commentsRoutes = require("./src/api/comments/comments.routes.js");
+const paymentsRoutes = require("./src/api/payments/payments.routes.js");
 const spotsRoutes = require("./src/api/spots/spots.routes.js");
 const stationsRoutes = require("./src/api/stations/stations.routes.js");
 const usersRoutes = require("./src/api/users/users.routes.js");
 
 server.use("/comments", commentsRoutes);
+server.use("/payments", paymentsRoutes);
 server.use("/spots", spotsRoutes);
 server.use("/stations", stationsRoutes);
 server.use("/users", usersRoutes);

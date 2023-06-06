@@ -4,11 +4,14 @@ const bcrypt = require("bcrypt");
 const userSchema = new mongoose.Schema(
     {
         username: {type: String, required: true, unique: true, trim: true},
+        name: {type: String, required: true},
+        surnames: {type: String, required: true},
         email: {type: String, required: true, unique: true, trim: true},
         image: {type: String},
         password: {type: String, required: true, trim: true},
         rol: {type: String, default: "user", enum: ["admin", "user"]},
         status: {type: String, required: true, default: 'unverified'},
+        payments: [{type: mongoose.Types.ObjectId, ref: 'payments'}],
         spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}]     //crear userSpotsSchema 
         //controlar stationsLikes
     },
