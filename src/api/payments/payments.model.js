@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema(
     {
-        cardHolderName: {type: String, required: true, unique, trim: true},
+        cardHolderName: {type: String, required: true, unique: true, trim: true},
         number: {type: Number, required: true, unique: true, trim: true},
         valMonth: {type: Number, required: true},
         valYear: {type: Number, required: true}
