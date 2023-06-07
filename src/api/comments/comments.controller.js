@@ -39,7 +39,7 @@ const getAllComments = async (req, res) => {
 const getAllCommentsByStation = async (req, res) => {
     try {
         const { id } = req.params;
-        const comments = await Comment.find({ station: id}).populate('user', 'username');
+        const comments = await Comment.find({ station: id}).populate('user', 'username image');
         if(!comments){
             return res.status(404).json({msg: 'Not Found'});
         }
