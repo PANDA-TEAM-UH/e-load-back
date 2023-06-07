@@ -34,10 +34,10 @@ server.use("/users", usersRoutes);
 server.use((err, res) => {
     return res.status(err.status || 500).json(err.message || "Error");
 })
-server.use("*", (res) => {
+server.use("*", (_, res) => {
     return res.status(404).json({msg: 'Not Found'});
 })
-server.use("/", (res) => {
+server.use("/", (_, res) => {
     res.status(200).send("It Works!")
 })
 server.listen(PORT, () => {
