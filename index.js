@@ -31,14 +31,14 @@ server.use("/spots", spotsRoutes);
 server.use("/stations", stationsRoutes);
 server.use("/users", usersRoutes);
 
-server.use((err, res) => {
+server.use("/", (req, res) => {
+    res.status(200).send("It Works!")
+})
+server.use((err, req, res) => {
     return res.status(err.status || 500).json(err.message || "Error");
 })
-server.use("*", (_, res) => {
+server.use("*", (req, res) => {
     return res.status(404).json({msg: 'Not Found'});
-})
-server.use("/", (_, res) => {
-    res.status(200).send("It Works!")
 })
 server.listen(PORT, () => {
     console.log("Server is running!");
