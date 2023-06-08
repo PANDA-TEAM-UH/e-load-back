@@ -4,19 +4,8 @@ const Spot = require("./spots.model");
 const createSpot = async (req, res) => {
     try {
         const newSpot = new Spot(req.body);
-        if(!req.body.power){
-            return res.status(400).json('Potencia obligatoria');
-        }
-        if(!req.body.type){
-            return res.status(400).json('Tipo obligatorio');
-        }
-        if(!req.body.rate){
-            return res.status(400).json('Tarifa obligatoria');
-        }
-        if(!req.body.power){
-            return res.status(400).json('Potencia obligatoria');
-        }
-        await newSpot.save();
+        console.log(req);
+        // await newSpot.save();
         return res.status(200).json(newSpot);
     } catch (error) {
         //pasar el error a grafana

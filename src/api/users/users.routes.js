@@ -1,11 +1,12 @@
 const { isAuth, isAdmin } = require("../../middlewares/auth");
+const { verifyCreateUserFields, verifyUpdateUserFields } = require("../../middlewares/fields");
 const uploadImage = require("../../middlewares/file");
 const { signUp, updateUser, deleteUser, login, getAllUsers, getUserById, checkSession } = require("./users.controller");
 
 const usersRoutes = require("express").Router();
 
-usersRoutes.post("/", uploadImage.single('image'), signUp);
-usersRoutes.put("/:id", [isAuth], uploadImage.single('image'), updateUser);
+usersRoutes.post("/",[verifyCreateUserFields], uploadImage.single('image'), signUp);
+usersRoutes.put("/:id", [verifyUpdateUserFields, isAuth], uploadImage.single('image'), updateUser);
 usersRoutes.delete("/:id", [isAdmin], deleteUser);
 usersRoutes.post("/login", login);
 usersRoutes.get("/", getAllUsers);

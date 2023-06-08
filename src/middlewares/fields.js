@@ -1,0 +1,87 @@
+function verify(req,res,next, props){
+    for(const prop in props){
+        if(!req.body[prop]){
+            return res.status(401).json(props[prop])
+        }
+    }
+    next();
+}
+
+function verifyCreateCommentFields(req, res, next){
+    const props = {
+        body: 'campo_obligatorio'
+    }
+    verify(req, res, next, props);
+}
+function verifyCreatePaymentFields(req, res, next){
+    const props = {
+        cardHolderName: 'nombre_obligatorio',
+        number: 'numero_obligatorio',
+        valMonth: 'mes_obligatorio',
+        valYear: 'anyo_obligatorio'
+    }
+    verify(req, res, next, props);
+}
+
+function verifyCreateSpotFields(req, res, next){
+    const props = {
+        power: 'potencia_obligatoria',
+        type: 'tipo_obligatorio',
+        rate: 'tarifa_obligatoria',
+        state: 'estado_obligatorio'
+    }
+    verify(req, res, next, props);
+}
+
+function verifyUpdateSpotFields(req, res, next){
+    const props = {
+        power: 'potencia_obligatoria',
+        type: 'tipo_obligatorio',
+        rate: 'tarifa_obligatoria',
+    }
+    verify(req, res, next, props);
+}
+function verifyCreateStationFields(req, res, next){
+    const props = {
+        coordinates: 'coordenadas_obligatorias',
+        address: 'direccion_obligatoria',
+        schedule: 'horario_obligatorio'
+    }
+    verify(req, res, next, props);
+}
+function verifyUpdateStationFields(req, res, next){
+    const props = {
+        schedule: 'horario_obligatorio'
+    }
+    verify(req, res, next, props);
+}
+function verifyCreateUserFields(req, res, next){
+    const props = {
+        username: 'usuario_obligatorio',
+        name: 'nombre_obligatorio',
+        surnames: 'apellido_obligatorio',
+        email: 'email_obligatorio',
+        password: 'contrasena_obligatoria'
+    }
+    verify(req, res, next, props);
+}
+function verifyUpdateUserFields(req, res, next){
+    const props = {
+        name: 'nombre_obligatorio',
+        surnames: 'apellido_obligatorio',
+        email: 'email_obligatorio',
+        password: 'contrasena_obligatoria'
+    }
+    verify(req, res, next, props);
+}
+
+module.exports = {
+    verifyCreateCommentFields,
+    verifyCreatePaymentFields,
+    verifyCreateSpotFields,
+    verifyUpdateSpotFields,
+    verifyCreateStationFields,
+    verifyUpdateStationFields,
+    verifyCreateUserFields,
+    verifyUpdateUserFields
+}

@@ -7,15 +7,6 @@ const createStation = async (req, res) => {
     if (req.file) {
       newStation.image = req.file.path;
     }
-    if (!req.body.coordinates) {
-      return res.status(400).json("Coordenadas obligatorias");
-    }
-    if (!req.body.address) {
-      return res.status(400).json("Dirección obligatoria");
-    }
-    if (!req.body.schedule) {
-      return res.status(400).json("Horario obligatorio");
-    }
     await newStation.save();
     return res.status(200).json(newStation);
   } catch (error) {

@@ -3,10 +3,9 @@ const Comment = require("./comments.model");
 const createComment = async (req, res) => {
     try {
         const newComment = new Comment(req.body);
-        if(!req.body){
-            return res.status(400).json('No se admiten comentarios vacíos');
-        }
         await newComment.save();
+        //pillar para meterle el id de estación y mirar el idUser
+
         return res.status(200).json(newComment);
     } catch (error) {
         //pasar el error a grafana
