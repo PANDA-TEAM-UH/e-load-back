@@ -3,7 +3,7 @@ const Payment = require("./payments.model");
 
 const createPayment = async (req, res) => {
     try {
-        const newPayment = new PaymentMethodChangeEvent(req.body);
+        const newPayment = new Payment(req.body);
         await newPayment.save();
         return res.status(200).json(newPayment);
     } catch (error) {

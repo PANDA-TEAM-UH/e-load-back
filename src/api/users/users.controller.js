@@ -79,14 +79,14 @@ const login = async (req, res) => {
         const { username, password } = req.body;
         const userToLog = await User.findOne({ username });
         if(!userToLog){
-            return res.status(404).json({msg: 'Not Found'});
+            return res.status(404).json({msg: 'Datos incorrectos'});
         }
         if(bcrypt.compareSync(password, userToLog.password)){
             const token = generateSign(userToLog.id, userToLog.username);
             return res.status(200).json({token, userToLog});
         }
         else{
-            return res.status(404).json({msg: 'Not Found'});
+            return res.status(404).json({msg: 'Datos incorrectos'});
         }
     }
     catch (error) {
