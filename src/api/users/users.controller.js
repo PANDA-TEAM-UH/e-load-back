@@ -117,12 +117,7 @@ const getUserById = async (req, res) => {
     }
 }
 const checkSession = async (req, res) => {
-    try {
-        return res.json(req.user)
-    } catch (error) {
-        //pasar error a grafana
-        return res.status(500).json({msg: 'Internal Server Error'});
-    }
+    return res.json(req.user)
 }
 
 module.exports = {
