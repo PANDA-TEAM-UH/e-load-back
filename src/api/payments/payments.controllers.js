@@ -6,7 +6,7 @@ const createPayment = async (req, res) => {
         const newPayment = new Payment(req.body);
         const userId = req.user._id;
         await newPayment.save();
-        await User.findByIdAndUpdate(userId, {payments: newPayment._id});        
+        await User.findByIdAndUpdate(userId, {$push: {payments: newPayment._id}});        
         return res.status(200).json(newPayment);
     } catch (error) {
         //pasar el error a grafana
