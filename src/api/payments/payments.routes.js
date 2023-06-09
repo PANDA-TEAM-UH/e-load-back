@@ -4,7 +4,8 @@ const { createPayment, getAllPaymentsByUser, deletePayment } = require("./paymen
 
 const paymentsRoutes = require("express").Router();
 
-paymentsRoutes.post("/", [verifyCreatePaymentFields, isAuth], createPayment);
+paymentsRoutes.post("/", [isAuth], createPayment);
+// paymentsRoutes.post("/", [verifyCreatePaymentFields, isAuth], createPayment);
 paymentsRoutes.delete("/:id", [isAuth], deletePayment);
 paymentsRoutes.get("/user/:id", [isAuth], getAllPaymentsByUser);
 
