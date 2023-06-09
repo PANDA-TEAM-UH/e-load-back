@@ -1,9 +1,10 @@
-const { isAdmin } = require("../../middlewares/auth");
+const { isAdmin, isAuth } = require("../../middlewares/auth");
 const { createSpot, updateSpot, deleteSpot, getAllSpots, getSpotById, getAllSpotsByStation } = require("./spots.controller");
-const {verifyCreateSpotFields, verifyUpdateSpotFields} =require( '../../middlewares/fields')
+const {verifyCreateSpotFields, verifyUpdateSpotFields, verifyUpdateSpotState} =require( '../../middlewares/fields')
 const spotsRoutes = require("express").Router();
 
 spotsRoutes.post("/", [verifyCreateSpotFields, isAdmin], createSpot);
+spotsRoutes.patch("/:id", [verifyUpdateSpotState, isAuth], updateSpot);
 spotsRoutes.put("/:id", [verifyUpdateSpotFields, isAdmin], updateSpot);
 spotsRoutes.delete("/:id", [isAdmin], deleteSpot);
 spotsRoutes.get("/", getAllSpots);

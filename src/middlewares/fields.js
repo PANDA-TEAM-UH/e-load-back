@@ -1,7 +1,7 @@
 function verify(req,res,next, props){
     for(const prop in props){
         if(!req.body[prop]){
-            return res.status(401).json(props[prop])
+            return res.status(401).json(props[prop]);
         }
     }
     next();
@@ -32,7 +32,17 @@ function verifyCreateSpotFields(req, res, next){
     }
     verify(req, res, next, props);
 }
-
+function verifyUpdateSpotState(req, res, next) {
+	const bodyKeys = Object.keys(req.body);
+  	if (bodyKeys.includes("state") && bodyKeys.length === 1) {
+	    const props = {
+      		state: "estado_obligatorio",
+    	};
+    	verify(req, res, next, props);
+  	}else{
+		return res.status(401).json({msg: 'Unauthorized'});
+	}
+}
 function verifyUpdateSpotFields(req, res, next){
     const props = {
         power: 'potencia_obligatoria',
@@ -77,6 +87,7 @@ function verifyUpdateUserFields(req, res, next){
 
 module.exports = {
     verifyCreateCommentFields,
+    verifyUpdateSpotState,
     verifyCreatePaymentFields,
     verifyCreateSpotFields,
     verifyUpdateSpotFields,
