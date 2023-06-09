@@ -1,4 +1,5 @@
 const Station = require("../stations/stations.model");
+const User = require("../users/users.model");
 const Spot = require("./spots.model");
 
 const createSpot = async (req, res) => {
@@ -62,6 +63,20 @@ const getAllSpotsByStation = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
+const getAllSpotsByUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id).populate('spots');
+        if(!user){
+            return res.status(404).json({msg: 'Not Found'});
+        }
+        const spots = user.spots;
+        return res.status(200).json(spots);
+    } catch (error) {
+        //pasar el error a grafana
+        return res.status(500).json({msg: 'Internal Server Error'});
+    }
+}
 const getSpotById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -82,5 +97,6 @@ module.exports = {
     deleteSpot,
     getAllSpots,
     getAllSpotsByStation,
+    getAllSpotsByUser,
     getSpotById
 }
