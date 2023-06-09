@@ -5,9 +5,10 @@ const createPayment = async (req, res) => {
     try {
         const newPayment = new Payment(req.body);
         const userId = req.user._id;
+        console.log(newPayment);
+        console.log(userId);
         await newPayment.save();
-        console.log(req.stationSelected);
-        await User.findByIdAndUpdate(userId, {$push: {payments: newPayment._id}});    //ESTO DEBO HACERLO EN LA ESTACIÓN    
+        await User.findByIdAndUpdate(userId, {$push: {payments: newPayment._id}});        
         return res.status(200).json(newPayment);
     } catch (error) {
         //pasar el error a grafana
