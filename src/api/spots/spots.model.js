@@ -6,7 +6,6 @@ const spotSchema = new mongoose.Schema(
         type: {type: String, required: true, enum: ["CHAdeMO", "CCS2", "Type2", "Schuko"]},
         rate: {type: Number, required: true},
         load: {type:Number, default: 0},
-        isLoading: {type: Boolean, default: false},
         state: {type: String, required: true, enum: ["Libre", "Ocupado", "Fuera de Servicio"], default:'Libre'}
     },
     {
