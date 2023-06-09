@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
         password: {type: String, required: true, trim: true},
         points: {type: Number, default: 0},
         rol: {type: String, default: "user", enum: ["admin", "user"]},
-        status: {type: String, required: true, default: 'unverified'},  //Pdte crear verificación
+        status: {type: String, default: 'unverified'},  //Pdte crear verificación
         payments: [{type: mongoose.Types.ObjectId, ref: 'payments'}],
         spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}] 
     },
