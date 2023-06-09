@@ -9,11 +9,11 @@ const userSchema = new mongoose.Schema(
         email: {type: String, required: true, unique: true, trim: true},
         image: {type: String},
         password: {type: String, required: true, trim: true},
+        points: {type: Number, default: 0},
         rol: {type: String, default: "user", enum: ["admin", "user"]},
-        status: {type: String, required: true, default: 'unverified'},
+        status: {type: String, required: true, default: 'unverified'},  //Pdte crear verificación
         payments: [{type: mongoose.Types.ObjectId, ref: 'payments'}],
-        spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}]     //crear userSpotsSchema 
-        //controlar stationsLikes
+        spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}] 
     },
     {
         timestamps: true,

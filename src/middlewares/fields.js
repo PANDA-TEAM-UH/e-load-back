@@ -39,7 +39,14 @@ function verifyUpdateSpotState(req, res, next) {
       		state: "estado_obligatorio",
     	};
     	verify(req, res, next, props);
-  	}else{
+  	}
+	else if(bodyKeys.includes("load") && bodyKeys.length === 1) {
+	    const props = {
+      		load: "carga_obligatoria",
+    	};
+    	verify(req, res, next, props);
+  	}
+	else{
 		return res.status(401).json({msg: 'Unauthorized'});
 	}
 }
