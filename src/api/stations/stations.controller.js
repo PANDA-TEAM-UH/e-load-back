@@ -65,6 +65,15 @@ const getAllStations = async (req, res) => {
         return res.status(500).json({msg: 'Internal Server Error'});
     }
 }
+const getAllStationsAdmin = async (req, res) => {
+  try {
+      const stations = await Station.find().select('address likes image');
+      return res.status(200).json(stations);
+  } catch (error) {
+      //pasar el error a grafana
+      return res.status(500).json({msg: 'Internal Server Error'});
+  }
+}
 const getStationById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -84,5 +93,6 @@ module.exports = {
     updateStation,
     deleteStation,
     getAllStations,
+    getAllStationsAdmin,
     getStationById
 }

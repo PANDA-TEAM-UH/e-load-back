@@ -10,6 +10,6 @@ spotsRoutes.delete("/:id", [isAdmin], deleteSpot);
 spotsRoutes.get("/", getAllSpots);
 spotsRoutes.get("/:id", getSpotById);
 spotsRoutes.get("/station/:id", getAllSpotsByStation);
-spotsRoutes.get("/user/:id", getAllSpotsByUser);
+spotsRoutes.get("/user/:id", [isAuth], getAllSpotsByUser);
 
 module.exports = spotsRoutes;
