@@ -58,7 +58,7 @@ const deleteStation = async (req, res) => {
 };
 const getAllStations = async (req, res) => {
     try {
-        const stations = await Station.find().select('coordinates');
+        const stations = await Station.find().select('coordinates address');
         return res.status(200).json(stations);
     } catch (error) {
         //pasar el error a grafana

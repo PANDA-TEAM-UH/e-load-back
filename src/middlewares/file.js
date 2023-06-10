@@ -5,7 +5,7 @@ const cloudinary = require("cloudinary").v2;
 const storageImage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "papiro",
+    folder: "e-load",
     allowedFormats: ["jpg", "png", "jpeg", "gif", "webp", "mp4", "mov"],
   },
 });
