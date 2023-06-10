@@ -4,8 +4,7 @@ const { createComment, deleteComment, getAllComments, getCommentById, getAllComm
 
 const commentsRoutes = require("express").Router();
 
-commentsRoutes.post("/", [isAuth], createComment);
-// commentsRoutes.post("/", [verifyCreateCommentFields, isAuth], createComment);
+commentsRoutes.post("/", [verifyCreateCommentFields, isAuth], createComment);
 commentsRoutes.delete("/:id", [isAdmin], deleteComment);
 commentsRoutes.get("/", getAllComments);
 commentsRoutes.get("/:id", getCommentById);

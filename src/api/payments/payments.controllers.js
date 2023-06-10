@@ -11,6 +11,7 @@ const createPayment = async (req, res) => {
         await User.findByIdAndUpdate(userId, {$push: {payments: newPayment._id}});        
         return res.status(200).json(newPayment);
     } catch (error) {
+        console.log(error);
         //pasar el error a grafana
         return res.status(500).json({msg: 'Internal Server Error'});
     }
