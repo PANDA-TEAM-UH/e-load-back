@@ -1,9 +1,9 @@
-const { deleteFile } = require("../../middlewares/deleteFile");
 const Station = require("./stations.model");
 
 const createStation = async (req, res) => {
   try {
     const newStation = new Station(req.body);
+    console.log(newStation);
     await newStation.save();
     return res.status(200).json(newStation);
   } catch (error) {
