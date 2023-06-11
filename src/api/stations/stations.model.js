@@ -8,7 +8,6 @@ const stationSchema = new mongoose.Schema(
         },
         address: {type: String, required: true},
         likes: {type: Number, default: 0},
-        image: {type: String},
         schedule: {type: String, required: true},  //crear commentsStationSchema
         spots: [{type: mongoose.Types.ObjectId, ref: 'spots'}]       
     },
