@@ -2,8 +2,12 @@ const Station = require("./stations.model");
 
 const createStation = async (req, res) => {
   try {
+    const coordinates= {
+      lat: req.body.coordinatesLat,
+      lng: req.body.coordinatesLng
+    }
+    req.body = {...req.body, coordinates}
     const newStation = new Station(req.body);
-    console.log(newStation);
     await newStation.save();
     return res.status(200).json(newStation);
   } catch (error) {
