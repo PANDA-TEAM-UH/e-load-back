@@ -4,9 +4,6 @@ const Station = require("./stations.model");
 const createStation = async (req, res) => {
   try {
     const newStation = new Station(req.body);
-    if (req.file) {
-      newStation.image = req.file.path;
-    }
     await newStation.save();
     return res.status(200).json(newStation);
   } catch (error) {
@@ -20,15 +17,6 @@ const updateStation = async (req, res) => {
     const station = await Station.findById(id);
     if (!station) {
       return res.status(404).json({ msg: "Not Found" });
-    }
-    if (req.file) {
-      if (station.image) {
-        deleteFile(station.image);
-      }
-      req.body.image = req.file.path;
-    } else if (station.image && (req.file === undefined || req.file === null)) {
-      deleteFile(station.image);
-      req.body.image = null;
     }
     const stationUpdated = await Station.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -45,9 +33,6 @@ const deleteStation = async (req, res) => {
     const station = await Station.findById(id);
     if (!station) {
       return res.status(404).json({ msg: "Not Found" });
-    }
-    if (station.image) {
-      deleteFile(station.image);
     }
     const stationDeleted = await Station.findByIdAndDelete(id);
     return res.status(200).json(stationDeleted);
