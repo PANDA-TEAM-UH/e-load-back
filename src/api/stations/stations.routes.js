@@ -4,8 +4,7 @@ const { createStation, updateStation, deleteStation, getAllStations, getStationB
 
 const stationsRoutes = require("express").Router();
 
-stationsRoutes.post("/", [isAdmin], createStation);
-// stationsRoutes.post("/", [verifyCreateStationFields, isAdmin], createStation);
+stationsRoutes.post("/", [verifyCreateStationFields, isAdmin], createStation);
 stationsRoutes.put("/:id", [verifyUpdateStationFields, isAdmin], updateStation);
 stationsRoutes.delete("/:id", [isAdmin], deleteStation);
 stationsRoutes.get("/", getAllStations);

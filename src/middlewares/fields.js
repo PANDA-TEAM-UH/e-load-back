@@ -6,7 +6,6 @@ function verify(req,res,next, props){
     }
     next();
 }
-
 function verifyCreateCommentFields(req, res, next){
     const props = {
         body: 'campo_obligatorio'
@@ -22,7 +21,6 @@ function verifyCreatePaymentFields(req, res, next){
     }
     verify(req, res, next, props);
 }
-
 function verifyCreateSpotFields(req, res, next){
     const props = {
         power: 'potencia_obligatoria',
@@ -60,17 +58,21 @@ function verifyUpdateSpotFields(req, res, next){
 }
 function verifyCreateStationFields(req, res, next){
     const props = {
-        coordinates: 'coordenadas_obligatorias',
+        coordinatesLat: 'coordenadas_obligatorias',
+        coordinatesLng: 'coordenadas_obligatorias',
         address: 'direccion_obligatoria',
         schedule: 'horario_obligatorio'
     }
     verify(req, res, next, props);
 }
 function verifyUpdateStationFields(req, res, next){
-    const props = {
-        schedule: 'horario_obligatorio'
+    const bodyKeys = Object.keys(req.body);
+  	if (bodyKeys.includes("schedule") && bodyKeys.length === 1) {
+	    const props = {
+      		schedule: 'horario_obligatorio'
+    	};
+        verify(req, res, next, props);
     }
-    verify(req, res, next, props);
 }
 function verifyCreateUserFields(req, res, next){
     const props = {

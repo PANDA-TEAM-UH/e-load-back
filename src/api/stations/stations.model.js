@@ -8,7 +8,7 @@ const stationSchema = new mongoose.Schema(
         },
         address: {type: String, required: true},
         likes: {type: Number, default: 0},
-        schedule: {type: String, required: true},  //crear commentsStationSchema
+        schedule: {type: String, required: true, enum: ["10:00 - 22:00", "24 Horas", "Cerrada"]},
         spots: [{type: mongoose.Types.ObjectId, ref: 'spots'}]       
     },
     {
