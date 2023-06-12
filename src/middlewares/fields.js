@@ -26,7 +26,8 @@ function verifyCreateSpotFields(req, res, next){
         power: 'potencia_obligatoria',
         type: 'tipo_obligatorio',
         rate: 'tarifa_obligatoria',
-        state: 'estado_obligatorio'
+        state: 'estado_obligatorio',
+        station: 'estacion_obligatoria'
     }
     verify(req, res, next, props);
 }

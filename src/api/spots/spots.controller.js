@@ -5,7 +5,7 @@ const Spot = require("./spots.model");
 const createSpot = async (req, res) => {
     try {
         const newSpot = new Spot(req.body);
-        // await newSpot.save();
+        await newSpot.save();
         return res.status(200).json(newSpot);
     } catch (error) {
         //pasar el error a grafana
