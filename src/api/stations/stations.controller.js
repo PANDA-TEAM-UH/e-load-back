@@ -56,7 +56,7 @@ const getAllStations = async (req, res) => {
 }
 const getAllStationsAdmin = async (req, res) => {
   try {
-      const stations = await Station.find().select('address likes schedule');
+      const stations = await Station.find().select('address schedule spots');
       return res.status(200).json(stations);
   } catch (error) {
       //pasar el error a grafana

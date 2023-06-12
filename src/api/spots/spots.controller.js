@@ -35,8 +35,10 @@ const deleteSpot = async (req, res) => {
         if(!spot){
             return res.status(404).json({msg: 'Not Found'});
         }
-        console.log('llega aqui');
-        // const spotDeleted = await Spot.findByIdAndDelete(id);
+        const stationId = spot.station.toString();
+        await Station.findByIdAndUpdate(stationId, {$pull: {spots: spot._id}})
+        const spotDeleted = await Spot.findByIdAndDelete(id);
+
         return res.status(200).json(spotDeleted);
     } catch (error) {
         //pasar el error a grafana
