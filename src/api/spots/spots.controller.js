@@ -5,7 +5,9 @@ const Spot = require("./spots.model");
 const createSpot = async (req, res) => {
     try {
         const newSpot = new Spot(req.body);
+        const stationId = req.body.station;
         await newSpot.save();
+        await Station.findByIdAndUpdate(stationId, {$push: {spots: newSpot._id}})
         return res.status(200).json(newSpot);
     } catch (error) {
         //pasar el error a grafana

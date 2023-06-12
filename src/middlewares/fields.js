@@ -51,9 +51,8 @@ function verifyUpdateSpotState(req, res, next) {
 }
 function verifyUpdateSpotFields(req, res, next){
     const props = {
-        power: 'potencia_obligatoria',
-        type: 'tipo_obligatorio',
         rate: 'tarifa_obligatoria',
+        state: 'estado_obligatorio'
     }
     verify(req, res, next, props);
 }
