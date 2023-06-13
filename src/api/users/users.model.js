@@ -13,7 +13,11 @@ const userSchema = new mongoose.Schema(
         rol: {type: String, default: "user", enum: ["admin", "user"]},
         status: {type: String, default: 'unverified'},  //Pdte crear verificación
         payments: [{type: mongoose.Types.ObjectId, ref: 'payments'}],
-        spots: [{ type: mongoose.Types.ObjectId, ref: 'spots'}] 
+        spots: [{
+            date: {type: String, required: true},
+            spot: { type: mongoose.Types.ObjectId, ref: 'spots'},
+            station: {type: mongoose.Types.ObjectId, ref: 'stations'}
+        }] 
     },
     {
         timestamps: true,
