@@ -34,6 +34,8 @@ const deletePayment = async (req, res) => {
         if(!payment){
             return res.status(404).json({msg: 'Not Found'});
         }
+        const userId = req.user._id.toString();
+        await User.findByIdAndUpdate(userId, {$pull : {payments: payment._id}});        
         const paymentDeleted = await Payment.findByIdAndDelete(id);
         return res.status(200).json(paymentDeleted);
     } catch (error) {
