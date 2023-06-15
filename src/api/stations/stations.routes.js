@@ -9,7 +9,6 @@ stationsRoutes.post("/", [verifyCreateStationFields, isAdmin], createStation);
 stationsRoutes.put("/:id", [verifyUpdateStationFields, isAdmin], updateStation);
 stationsRoutes.delete("/:id", [isAdmin], deleteStation);
 stationsRoutes.get("/", getAllStations);
-stationsRoutes.get("/", getAllStations);
 stationsRoutes.get("/stations-admin", getAllStationsAdmin);
 // stationsRoutes.get("/station-address", getAddressStationById),
 stationsRoutes.get("/:id", getStationById);
